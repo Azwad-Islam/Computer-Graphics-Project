@@ -900,3 +900,12 @@
 
 1526093414 c:\program files\codeblocks\mingw\x86_64-w64-mingw32\include\_mingw_print_pop.h
 
+1702993121 source:e:\semester 8th\computer graphics\git\computer-graphics-project\main.cpp
+	<GL/glut.h>
+	<iostream>
+	<math.h>
+	<stdio.h>
+	<stdlib.h>
+	<windows.h>
+	<mmsystem.h>
+
