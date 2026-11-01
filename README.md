@@ -22,7 +22,7 @@ Linked libraries: `freeglut`, `opengl32`, `glu32`, `winmm`, `gdi32`.
 With the [Emscripten SDK](https://emscripten.org/docs/getting_started/downloads.html) installed:
 
 ```bash
-emcc main.cpp -O2 -o dist/index.html --shell-file web/shell.html -sLEGACY_GL_EMULATION -lglut -lGL -lGLU
+emcc main.cpp -O2 -o dist/index.html --shell-file web/shell.html -sLEGACY_GL_EMULATION -sGL_UNSAFE_OPTS=0 -lglut -lGL -lGLU
 ```
 
 Then serve the `dist` folder, for example with `python -m http.server -d dist`.

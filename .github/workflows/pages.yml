@@ -30,7 +30,7 @@ jobs:
           mkdir -p dist
           emcc main.cpp -O2 -o dist/index.html \
             --shell-file web/shell.html \
-            -sLEGACY_GL_EMULATION \
+            -sLEGACY_GL_EMULATION -sGL_UNSAFE_OPTS=0 \
             -lglut -lGL -lGLU
 
       - uses: actions/upload-pages-artifact@v3

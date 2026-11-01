@@ -9,6 +9,13 @@
 #include<mmsystem.h>
 #endif
 
+#ifdef __EMSCRIPTEN__
+// The web build's GL emulation has no GL_POLYGON; every polygon here is convex,
+// so drawing it as a triangle fan gives the same result
+#undef GL_POLYGON
+#define GL_POLYGON GL_TRIANGLE_FAN
+#endif
+
 float blimpX = 2.19;  // Initial x-coordinate of the ellipse
 float blimpSpeed = 0.01;     // blimpSpeed of movement
 bool blimpReverse = true;  // Flag to indicate the direction of movement
