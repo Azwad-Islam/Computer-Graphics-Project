@@ -1,16 +1,27 @@
-# Gotham Night – Computer Graphics Project
+# Gotham City – Computer Graphics Project
 
-A 2D Gotham City skyline drawn with OpenGL/GLUT in C++, with an animated police blimp sweeping its spotlight across the city.
+A 2D Gotham City night scene drawn with OpenGL/GLUT in C++, with Batman, the Bat-Signal and an animated police blimp sweeping its searchlight across the city.
 
 ### ▶ [Live demo](https://azwad-islam.github.io/Computer-Graphics-Project/)
 
 The same `main.cpp` runs in the browser: it is compiled to WebAssembly with [Emscripten](https://emscripten.org/) and deployed to GitHub Pages on every push (see [`.github/workflows/pages.yml`](.github/workflows/pages.yml)).
 
 ## Features
-- Buildings drawn from OpenGL polygons, quads and triangles with per-vertex color gradients
-- Animated police blimp that moves back and forth using `glutTimerFunc` (~60 FPS)
-- Spotlight that fades out using alpha blending
+- Gotham City at night: Wayne Tower, GCPD, the police building and a skyline of lit windows, drawn from OpenGL polygons, quads, triangles, lines and points
+- Batman on a rooftop with the Bat-Signal in the sky
+- Animated police blimp with a searchlight, moved with `glTranslatef` on a `glutTimerFunc` timer (~60 FPS)
+- Keyboard and mouse controls
 - Ellipse and circle drawing with trigonometric vertex generation
+
+## Controls
+| Input | Action |
+| --- | --- |
+| `B` | Toggle Batman, the Bat-Signal and the police blimp |
+| `S` / `A` | Stop / start the blimp |
+| `Z` / `X` | Move the blimp backward / forward |
+| Left / right click | Speed up / slow down the blimp |
+
+In the browser, click the scene first so it receives key presses.
 
 ## Run on desktop (Windows)
 1. Open `final Project.cbp` in Code::Blocks (MinGW + freeglut).

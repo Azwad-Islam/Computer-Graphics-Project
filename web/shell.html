@@ -18,16 +18,28 @@
       background: #fff;
     }
     #status { position: absolute; color: #9AA1B2; font: 14px Arial, sans-serif; }
+    #controls {
+      position: absolute; bottom: 12px; left: 50%; transform: translateX(-50%);
+      padding: 8px 14px; border-radius: 8px; background: rgba(11, 13, 18, 0.8);
+      color: #E8EAF0; font: 13px Arial, sans-serif; white-space: nowrap;
+    }
+    #controls b { color: #F2C14E; }
+    @media (max-width: 600px) { #controls { white-space: normal; width: calc(100% - 32px); text-align: center; } }
   </style>
 </head>
 <body>
   <div id="status">Loading…</div>
   <canvas id="canvas" oncontextmenu="event.preventDefault()"></canvas>
+  <div id="controls" hidden>
+    <b>B</b> Batman &amp; Bat-Signal · <b>S</b>/<b>A</b> stop/start blimp · <b>Z</b>/<b>X</b> reverse/forward · Left/right click: faster/slower
+  </div>
   <script>
     var Module = {
       canvas: document.getElementById('canvas'),
       onRuntimeInitialized: function () { document.getElementById('status').remove(); }
     };
+    // Show the controls on the full page, not in small embedded previews
+    if (window.self === window.top) document.getElementById('controls').hidden = false;
   </script>
   {{{ SCRIPT }}}
 </body>
