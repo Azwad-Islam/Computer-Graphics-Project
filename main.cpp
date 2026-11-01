@@ -10,10 +10,8 @@
 #endif
 
 #ifdef __EMSCRIPTEN__
-// The web build's GL emulation has no GL_POLYGON; every polygon here is convex,
-// so drawing it as a triangle fan gives the same result
-#undef GL_POLYGON
-#define GL_POLYGON GL_TRIANGLE_FAN
+// Web build: provides glBegin/glVertex/glEnd on top of WebGL
+#include "web/gl_compat.h"
 #endif
 
 float blimpX = 2.19;  // Initial x-coordinate of the ellipse
