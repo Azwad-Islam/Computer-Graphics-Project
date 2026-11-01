@@ -23,15 +23,21 @@
       padding: 8px 14px; border-radius: 8px; background: rgba(11, 13, 18, 0.8);
       color: #E8EAF0; font: 13px Arial, sans-serif; white-space: nowrap;
     }
-    #controls b { color: #F2C14E; }
-    @media (max-width: 600px) { #controls { white-space: normal; width: calc(100% - 32px); text-align: center; } }
+    /* The build minifies this page and drops spaces between tags, so spacing is done in CSS */
+    #controls { display: flex; gap: 14px; }
+    #controls[hidden] { display: none; }
+    #controls b { color: #F2C14E; margin-right: 5px; }
+    @media (max-width: 600px) { #controls { flex-wrap: wrap; justify-content: center; gap: 4px 14px; width: calc(100% - 32px); white-space: normal; } }
   </style>
 </head>
 <body>
   <div id="status">Loading…</div>
   <canvas id="canvas" oncontextmenu="event.preventDefault()"></canvas>
   <div id="controls" hidden>
-    <b>B</b> Batman &amp; Bat-Signal · <b>S</b>/<b>A</b> stop/start blimp · <b>Z</b>/<b>X</b> reverse/forward · Left/right click: faster/slower
+    <span><b>B</b>Batman &amp; Bat-Signal</span>
+    <span><b>S / A</b>stop / start blimp</span>
+    <span><b>Z / X</b>reverse / forward</span>
+    <span><b>Left / right click</b>faster / slower</span>
   </div>
   <script>
     var Module = {
