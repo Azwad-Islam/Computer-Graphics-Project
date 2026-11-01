@@ -21,7 +21,7 @@ The same `main.cpp` runs in the browser: it is compiled to WebAssembly with [Ems
 | `Z` / `X` | Move the blimp backward / forward |
 | Left / right click | Speed up / slow down the blimp |
 
-In the browser, click the scene first so it receives key presses.
+In the browser, click the scene first so it receives key presses. The background music starts on your first click or key press; use the ♪ button to turn it off.
 
 ## Run on desktop (Windows)
 1. Open `final Project.cbp` in Code::Blocks (MinGW + freeglut).

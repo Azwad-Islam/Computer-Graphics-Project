@@ -28,6 +28,11 @@
     #controls[hidden] { display: none; }
     #controls b { color: #F2C14E; margin-right: 5px; }
     @media (max-width: 600px) { #controls { flex-wrap: wrap; justify-content: center; gap: 4px 14px; width: calc(100% - 32px); white-space: normal; } }
+    #sound {
+      position: absolute; top: 12px; right: 12px; padding: 8px 14px; border: 0; border-radius: 8px;
+      background: rgba(11, 13, 18, 0.8); color: #E8EAF0; font: 13px Arial, sans-serif; cursor: pointer;
+    }
+    #sound:hover { color: #F2C14E; }
   </style>
 </head>
 <body>
@@ -39,13 +44,39 @@
     <span><b>Z / X</b>reverse / forward</span>
     <span><b>Left / right click</b>faster / slower</span>
   </div>
+  <button id="sound" hidden>♪ Music: off</button>
   <script>
     var Module = {
       canvas: document.getElementById('canvas'),
       onRuntimeInitialized: function () { document.getElementById('status').remove(); }
     };
-    // Show the controls on the full page, not in small embedded previews
-    if (window.self === window.top) document.getElementById('controls').hidden = false;
+    // Controls and music only on the full page, not in small embedded previews
+    if (window.self === window.top) {
+      document.getElementById('controls').hidden = false;
+
+      // Browsers only allow audio after the visitor interacts with the page,
+      // so the music starts on the first click or key press
+      var music = new Audio('music.mp3');
+      music.loop = true;
+      var soundButton = document.getElementById('sound');
+      soundButton.hidden = false;
+      var updateButton = function () { soundButton.textContent = music.paused ? '♪ Music: off' : '♪ Music: on'; };
+      music.addEventListener('play', updateButton);
+      music.addEventListener('pause', updateButton);
+      var startMusic = function (event) {
+        if (event.target === soundButton) return;
+        window.removeEventListener('pointerdown', startMusic);
+        window.removeEventListener('keydown', startMusic);
+        music.play().catch(function () {});
+      };
+      window.addEventListener('pointerdown', startMusic);
+      window.addEventListener('keydown', startMusic);
+      soundButton.addEventListener('click', function () {
+        window.removeEventListener('pointerdown', startMusic);
+        window.removeEventListener('keydown', startMusic);
+        if (music.paused) music.play().catch(function () {}); else music.pause();
+      });
+    }
   </script>
   {{{ SCRIPT }}}
 </body>
