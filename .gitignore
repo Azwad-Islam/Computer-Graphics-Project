@@ -1,0 +1,6 @@
+# Code::Blocks build output
+bin/
+obj/
+
+# Emscripten web build output
+dist/

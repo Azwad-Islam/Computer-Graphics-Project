@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Gotham Night – OpenGL Demo</title>
+  <style>
+    html, body { margin: 0; height: 100%; background: #0B0D12; }
+    body { display: flex; align-items: center; justify-content: center; overflow: hidden; }
+    /* The program draws into a 750x1040 buffer; scale it to fit the window */
+    canvas {
+      display: block;
+      height: 100vh;
+      width: auto;
+      max-width: 100vw;
+      aspect-ratio: 750 / 1040;
+      object-fit: contain;
+      background: #fff;
+    }
+    #status { position: absolute; color: #9AA1B2; font: 14px Arial, sans-serif; }
+  </style>
+</head>
+<body>
+  <div id="status">Loading…</div>
+  <canvas id="canvas" oncontextmenu="event.preventDefault()"></canvas>
+  <script>
+    var Module = {
+      canvas: document.getElementById('canvas'),
+      onRuntimeInitialized: function () { document.getElementById('status').remove(); }
+    };
+  </script>
+  {{{ SCRIPT }}}
+</body>
+</html>

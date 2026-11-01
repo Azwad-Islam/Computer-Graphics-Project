@@ -3,9 +3,11 @@
 #include<math.h>
 #include <stdio.h>
 #include <stdlib.h>
+#ifdef _WIN32
 #include <windows.h>
 //play sound
 #include<mmsystem.h>
+#endif
 
 float blimpX = 2.19;  // Initial x-coordinate of the ellipse
 float blimpSpeed = 0.01;     // blimpSpeed of movement
@@ -650,8 +652,12 @@ void policeBuilding() {
 }
 
 void display() {
-    glClearColor(1.0f, 1.0f, 1.0f, 0.0f); // Set background color to black and opaque
+    glClearColor(1.0f, 1.0f, 1.0f, 1.0f); // Set background color to white and opaque
     glClear(GL_COLOR_BUFFER_BIT); // Clear the color buffer (background)
+
+    // Enable blending so the blimp's spotlight fades out
+    glEnable(GL_BLEND);
+    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
@@ -687,8 +693,10 @@ int main(int argc, char** argv) {
     glutTimerFunc(0, updateBlimp, 0);
 
 
-    //Code to play music
+    //Code to play music (Windows only)
+#ifdef _WIN32
     sndPlaySound("bat.wav", SND_ASYNC);
+#endif
     // sndPlaySound("instrumental.wav", SND_ASYNC);
     // PlaySound("instrumental.wav", NULL, SND_ASYNC | SND_FILENAME | SND_LOOP);
     glutMainLoop(); // Enter the event-processing loop
